@@ -20,26 +20,22 @@ public class CustomerServiceImp implements ICustomer{
 
 	@Override
 	public Customer getCustomerByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getCustomerByUsername(username);
 	}
 
 	@Override
 	public int registerCustomer(Customer customerData) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.registerCustomer(customerData);
 	}
 
 	@Override
 	public int updateCustomer(Customer customerData) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.updateCustomer(customerData);
 	}
 
 	@Override
 	public int deleteCustomer(int customerId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.deleteCustomer(customerId);
 	}
 	
 }
