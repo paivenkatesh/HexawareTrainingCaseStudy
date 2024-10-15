@@ -13,7 +13,7 @@ public class DBUtil {
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/database_name", "root", "password");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3310/car_connect", "root", "22647");
 
 		} catch (SQLException e) {
 
