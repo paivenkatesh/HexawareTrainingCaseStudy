@@ -70,7 +70,7 @@ public class Customer {
 	}
 
     
-//    public boolean authenticate(String password) {
-//        return this.password.equals(password);
-//    }
+    public boolean authenticate(String password) {
+        return this.password.equals(password);
+    }
 }
