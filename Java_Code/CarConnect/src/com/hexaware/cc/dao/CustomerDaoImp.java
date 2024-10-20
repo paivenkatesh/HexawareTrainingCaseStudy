@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.*;
 
 import com.hexaware.cc.entity.Customer;
+import com.hexaware.cc.util.DBConnUtil;
+import com.hexaware.cc.util.DBUtil;
 
 public class CustomerDaoImp implements ICustomerDao {
 	private Connection conn;
 	
 	public CustomerDaoImp () {
-		conn = DBUtil.getDBConnection();
+		conn = DBConnUtil.getConnection();
+
 	}
 
 	 @Override

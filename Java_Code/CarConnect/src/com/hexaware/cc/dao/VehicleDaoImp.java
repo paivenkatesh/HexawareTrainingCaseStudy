@@ -4,13 +4,17 @@ import java.sql.*;
 import java.sql.SQLException;
 import java.util.List;
 import com.hexaware.cc.entity.Vehicle;
+import com.hexaware.cc.util.DBConnUtil;
+import com.hexaware.cc.util.DBUtil;
+
 import java.util.ArrayList;
 
 public class VehicleDaoImp implements IVehicleDao {
 	private Connection conn;
 	
 	public VehicleDaoImp () {
-		conn = DBUtil.getDBConnection();
+		conn = DBConnUtil.getConnection();
+
 	}
 
 	@Override
@@ -78,7 +82,7 @@ public class VehicleDaoImp implements IVehicleDao {
             pstmt.setBoolean(6, vehicleData.isAvailable());
             pstmt.setDouble(7, vehicleData.getDailyRate());
 
-            return pstmt.executeUpdate();  // Returns number of rows affected (1 if success)
+            return pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -99,7 +103,7 @@ public class VehicleDaoImp implements IVehicleDao {
             pstmt.setDouble(7, vehicleData.getDailyRate());
             pstmt.setInt(8, vehicleData.getVehicleID());
 
-            return pstmt.executeUpdate();  // Returns number of rows affected
+            return pstmt.executeUpdate();  
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -112,7 +116,7 @@ public class VehicleDaoImp implements IVehicleDao {
             String query = "DELETE FROM Vehicle WHERE VehicleID = ?";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, vehicleId);
-            return pstmt.executeUpdate();  // Returns 1 if successful
+            return pstmt.executeUpdate();  
         } catch (SQLException e) {
             e.printStackTrace();
         }
