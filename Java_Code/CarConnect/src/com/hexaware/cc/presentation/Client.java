@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.sql.Date;
 import com.hexaware.cc.entity.*;
 import com.hexaware.cc.service.*;
-import com.hexaware.cc.util.*;
+import com.hexaware.cc.util.DBConnUtil;
 
 public class Client {
     private static final Scanner scanner = new Scanner(System.in);

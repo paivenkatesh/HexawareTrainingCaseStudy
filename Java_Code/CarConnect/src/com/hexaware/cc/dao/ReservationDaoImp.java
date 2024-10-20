@@ -6,7 +6,8 @@ import java.util.*;
 
 import com.hexaware.cc.entity.Reservation;
 import com.hexaware.cc.util.DBConnUtil;
-import com.hexaware.cc.util.DBUtil;
+import com.hexaware.cc.util.DBConnUtil;
+
 
 public class ReservationDaoImp implements IReservationDao {
 	private Connection conn;

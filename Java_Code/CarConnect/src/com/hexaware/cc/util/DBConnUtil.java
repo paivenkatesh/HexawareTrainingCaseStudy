@@ -12,7 +12,7 @@ public class DBConnUtil {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 String connectionString = DBPropertyUtil.getConnectionString();
-                connection = DriverManager.getConnection(connectionString);
+                connection = DriverManager.getConnection(connectionString, DBPropertyUtil.getUsername(), DBPropertyUtil.getPassword());
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }

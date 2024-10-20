@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 import com.hexaware.cc.entity.Vehicle;
 import com.hexaware.cc.util.DBConnUtil;
-import com.hexaware.cc.util.DBUtil;
-
 import java.util.ArrayList;
 
 public class VehicleDaoImp implements IVehicleDao {

@@ -5,15 +5,21 @@ import java.sql.*;
 
 import com.hexaware.cc.entity.Customer;
 import com.hexaware.cc.util.DBConnUtil;
-import com.hexaware.cc.util.DBUtil;
 
 public class CustomerDaoImp implements ICustomerDao {
-	private Connection conn;
 	
-	public CustomerDaoImp () {
-		conn = DBConnUtil.getConnection();
-
+	private Connection conn;
+	public CustomerDaoImp() {
+		this.conn = connectToDB();
+		
 	}
+	
+	public Connection connectToDB() {
+		return DBConnUtil.getConnection();
+	}
+	
+	
+
 
 	 @Override
 	    public Customer getCustomerById(int customerId) {

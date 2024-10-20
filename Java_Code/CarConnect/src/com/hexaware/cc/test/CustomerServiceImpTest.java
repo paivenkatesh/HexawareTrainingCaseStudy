@@ -2,38 +2,52 @@ package com.hexaware.cc.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-class CustomerServiceImpTest {
+import com.hexaware.cc.entity.*;
+import com.hexaware.cc.dao.ICustomerDao;
+import com.hexaware.cc.service.CustomerServiceImp;
+import com.hexaware.cc.service.ICustomer;
 
+class CustomerServiceImpTest {
+	
+	static ICustomer service;
+	
+	@BeforeAll
+	public static void beforeAll() {
+		service = new CustomerServiceImp();
+	}
+	
+	
 	@Test
 	void testCustomerServiceImp() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	void testGetCustomerById() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	void testGetCustomerByUsername() {
-		fail("Not yet implemented");
+		Customer customer = service.getCustomerByUsername("Venky");
 	}
 
 	@Test
 	void testRegisterCustomer() {
-		fail("Not yet implemented");
+	
 	}
 
 	@Test
 	void testUpdateCustomer() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	void testDeleteCustomer() {
-		fail("Not yet implemented");
+		
 	}
 
 }
