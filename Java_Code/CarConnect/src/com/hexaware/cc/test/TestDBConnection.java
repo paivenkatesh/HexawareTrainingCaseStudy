@@ -1,11 +1,12 @@
 package com.hexaware.cc.test;
 
+import com.hexaware.cc.exception.DatabaseConnectionException;
 import com.hexaware.cc.util.DBConnUtil;
 import java.sql.Connection;
 
 public class TestDBConnection {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws DatabaseConnectionException {
 		// TODO Auto-generated method stub
 		Connection connection = DBConnUtil.getConnection();
 		if(connection != null) {
