@@ -10,12 +10,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.hexaware.cc.entity.*;
+import com.hexaware.cc.exception.DatabaseConnectionException;
 import com.hexaware.cc.util.DBConnUtil;
 
 public class ReportGenerator {
 	private final Connection connection;
 
-    public ReportGenerator() {
+    public ReportGenerator() throws DatabaseConnectionException {
         this.connection = DBConnUtil.getConnection();  
     }
 

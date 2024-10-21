@@ -25,7 +25,7 @@ public class Client {
     private static String currentUser = null;
     private static String currentRole = null;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AuthenticationException, DatabaseConnectionException {
         boolean exit = false;
         while (!exit) {
             if (currentUser == null) {
@@ -103,7 +103,7 @@ public class Client {
         }
     }
 
-    private static void handleMainMenuChoice(int choice) {
+    private static void handleMainMenuChoice(int choice) throws DatabaseConnectionException, AuthenticationException, InvalidInputException, CustomerNotFoundException {
         if ("ADMIN".equals(currentRole)) {
             switch (choice) {
                 case 1 -> customerOperations();
@@ -132,7 +132,7 @@ public class Client {
 		return null;
 	}
 
-	private static void customerOperations() {
+	private static void customerOperations() throws CustomerNotFoundException, DatabaseConnectionException {
         boolean back = false;
         while (!back) {
             displayCustomerMenu();
@@ -211,7 +211,7 @@ public class Client {
     }
 
 
-    private static void vehicleOperations() {
+    private static void vehicleOperations() throws VehicleNotFoundException, DatabaseConnectionException {
         boolean back = false;
         while (!back) {
             displayVehicleMenu();
@@ -289,7 +289,7 @@ public class Client {
         }
     }
 
-    private static void reservationOperations() {
+    private static void reservationOperations() throws ReservationException, DatabaseConnectionException {
         boolean back = false;
         while (!back) {
             displayReservationMenu();
@@ -368,7 +368,7 @@ public class Client {
         }
     }
 
-    private static void adminOperations() {
+    private static void adminOperations() throws AdminNotFoundException, DatabaseConnectionException {
         boolean back = false;
         while (!back) {
             displayAdminMenu();

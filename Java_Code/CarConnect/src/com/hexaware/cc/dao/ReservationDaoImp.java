@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 import com.hexaware.cc.entity.Reservation;
+import com.hexaware.cc.exception.DatabaseConnectionException;
 import com.hexaware.cc.util.DBConnUtil;
 import com.hexaware.cc.util.DBConnUtil;
 
@@ -12,7 +13,7 @@ import com.hexaware.cc.util.DBConnUtil;
 public class ReservationDaoImp implements IReservationDao {
 	private Connection conn;
 	
-	public ReservationDaoImp () {
+	public ReservationDaoImp () throws DatabaseConnectionException {
 		conn = DBConnUtil.getConnection();
 
 	}

@@ -4,13 +4,14 @@ import java.sql.*;
 import java.sql.SQLException;
 import java.util.List;
 import com.hexaware.cc.entity.Vehicle;
+import com.hexaware.cc.exception.DatabaseConnectionException;
 import com.hexaware.cc.util.DBConnUtil;
 import java.util.ArrayList;
 
 public class VehicleDaoImp implements IVehicleDao {
 	private Connection conn;
 	
-	public VehicleDaoImp () {
+	public VehicleDaoImp () throws DatabaseConnectionException {
 		conn = DBConnUtil.getConnection();
 
 	}

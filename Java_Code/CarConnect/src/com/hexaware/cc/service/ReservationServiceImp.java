@@ -5,12 +5,13 @@ import java.util.List;
 import com.hexaware.cc.dao.IReservationDao;
 import com.hexaware.cc.dao.ReservationDaoImp;
 import com.hexaware.cc.entity.Reservation;
+import com.hexaware.cc.exception.DatabaseConnectionException;
 
 public class ReservationServiceImp implements IReservation {
 	
 	private IReservationDao reservationDao;
 	
-	public ReservationServiceImp()
+	public ReservationServiceImp() throws DatabaseConnectionException
 	{
 		this.reservationDao = new ReservationDaoImp();
 	

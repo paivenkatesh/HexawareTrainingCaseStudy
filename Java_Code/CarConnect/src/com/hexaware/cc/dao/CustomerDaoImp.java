@@ -4,23 +4,18 @@ import java.sql.Connection;
 import java.sql.*;
 
 import com.hexaware.cc.entity.Customer;
+import com.hexaware.cc.exception.DatabaseConnectionException;
 import com.hexaware.cc.util.DBConnUtil;
 
 public class CustomerDaoImp implements ICustomerDao {
 	
 	private Connection conn;
-	public CustomerDaoImp() {
-		this.conn = connectToDB();
-		
-	}
 	
-	public Connection connectToDB() {
-		return DBConnUtil.getConnection();
-	}
+	 public CustomerDaoImp() throws DatabaseConnectionException {
+	    	conn = DBConnUtil.getConnection();
+	    }
 	
 	
-
-
 	 @Override
 	    public Customer getCustomerById(int customerId) {
 	        try {
