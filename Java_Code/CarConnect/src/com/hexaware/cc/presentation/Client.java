@@ -5,6 +5,13 @@ import java.util.Map;
 import java.util.Scanner;
 import java.sql.Date;
 import com.hexaware.cc.entity.*;
+import com.hexaware.cc.exception.AdminNotFoundException;
+import com.hexaware.cc.exception.AuthenticationException;
+import com.hexaware.cc.exception.CustomerNotFoundException;
+import com.hexaware.cc.exception.DatabaseConnectionException;
+import com.hexaware.cc.exception.InvalidInputException;
+import com.hexaware.cc.exception.ReservationException;
+import com.hexaware.cc.exception.VehicleNotFoundException;
 import com.hexaware.cc.service.*;
 import com.hexaware.cc.util.DBConnUtil;
 
@@ -51,7 +58,7 @@ public class Client {
         System.out.println("3. Exit");
     }
 
-    private static void adminLogin() {
+    private static void adminLogin() throws AuthenticationException, DatabaseConnectionException {
         String username = getStringInput("Enter username: ");
         String password = getStringInput("Enter password: ");
         
@@ -64,7 +71,7 @@ public class Client {
         }
     }
 
-    private static void customerLogin() {
+    private static void customerLogin() throws AuthenticationException, DatabaseConnectionException {
         String username = getStringInput("Enter username: ");
         String password = getStringInput("Enter password: ");
         
@@ -153,7 +160,7 @@ public class Client {
         System.out.println("0. Back to Main Menu");
     }
 
-    private static void getCustomerById() {
+    private static void getCustomerById() throws CustomerNotFoundException, DatabaseConnectionException {
         int customerId = getIntInput("Enter Customer ID: ");
         Customer customer = customerService.getCustomerById(customerId);
         if (customer != null) {
@@ -163,7 +170,7 @@ public class Client {
         }
     }
 
-    private static void getCustomerByUsername() {
+    private static void getCustomerByUsername() throws CustomerNotFoundException, DatabaseConnectionException {
         String username = getStringInput("Enter Username: ");
         Customer customerByUsername = customerService.getCustomerByUsername(username);
         if (customerByUsername != null) {
@@ -232,7 +239,7 @@ public class Client {
         System.out.println("0. Back to Main Menu");
     }
 
-    private static void getVehicleById() {
+    private static void getVehicleById() throws VehicleNotFoundException, DatabaseConnectionException {
         int vehicleId = getIntInput("Enter Vehicle ID: ");
         Vehicle vehicle = vehicleService.getVehicleById(vehicleId);
         if (vehicle != null) {
@@ -242,7 +249,7 @@ public class Client {
         }
     }
 
-    private static void getAvailableVehicles() {
+    private static void getAvailableVehicles() throws DatabaseConnectionException {
         List<Vehicle> availableVehicles = vehicleService.getAvailableVehicles();
         if (availableVehicles.isEmpty()) {
             System.out.println("No available vehicles found.");
@@ -310,7 +317,7 @@ public class Client {
         System.out.println("0. Back to Main Menu");
     }
 
-    private static void getReservationById() {
+    private static void getReservationById() throws ReservationException, DatabaseConnectionException {
         int reservationId = getIntInput("Enter Reservation ID: ");
         Reservation reservation = reservationService.getReservationById(reservationId);
         if (reservation != null) {
@@ -320,7 +327,7 @@ public class Client {
         }
     }
 
-    private static void getReservationsByCustomerId() {
+    private static void getReservationsByCustomerId() throws DatabaseConnectionException {
         int customerId = getIntInput("Enter Customer ID: ");
         List<Reservation> reservations = reservationService.getReservationsByCustomerId(customerId);
         if (reservations.isEmpty()) {
@@ -389,7 +396,7 @@ public class Client {
         System.out.println("0. Back to Main Menu");
     }
 
-    private static void getAdminById() {
+    private static void getAdminById() throws AdminNotFoundException, DatabaseConnectionException {
         int adminId = getIntInput("Enter Admin ID: ");
         Admin admin = adminService.getAdminById(adminId);
         if (admin != null) {
@@ -399,7 +406,7 @@ public class Client {
         }
     }
 
-    private static void getAdminByUsername() {
+    private static void getAdminByUsername() throws AdminNotFoundException, DatabaseConnectionException {
         String username = getStringInput("Enter Username: ");
         Admin admin = adminService.getAdminByUsername(username);
         if (admin != null) {
@@ -482,7 +489,7 @@ public class Client {
         }
     }
 
-    private static void changePassword() {
+    private static void changePassword() throws AuthenticationException, InvalidInputException, DatabaseConnectionException, CustomerNotFoundException {
         String oldPassword = getStringInput("Enter current password: ");
         String newPassword = getStringInput("Enter new password: ");
         

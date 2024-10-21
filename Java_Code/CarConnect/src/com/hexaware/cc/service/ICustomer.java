@@ -1,16 +1,19 @@
 package com.hexaware.cc.service;
 
 import com.hexaware.cc.entity.Customer;
+import com.hexaware.cc.exception.CustomerNotFoundException;
+import com.hexaware.cc.exception.InvalidInputException;
+import com.hexaware.cc.exception.DatabaseConnectionException;
 
 public interface ICustomer {
-    
-    Customer getCustomerById(int customerId);
-    
-    Customer getCustomerByUsername(String username);
-    
-    int registerCustomer(Customer customerData);
-    
-    int updateCustomer(Customer customerData);
-    
-    int deleteCustomer(int customerId);
+
+    Customer getCustomerById(int customerId) throws CustomerNotFoundException, DatabaseConnectionException;
+
+    Customer getCustomerByUsername(String username) throws CustomerNotFoundException, DatabaseConnectionException;
+
+    int registerCustomer(Customer customerData) throws InvalidInputException, DatabaseConnectionException;
+
+    int updateCustomer(Customer customerData) throws CustomerNotFoundException, InvalidInputException, DatabaseConnectionException;
+
+    int deleteCustomer(int customerId) throws CustomerNotFoundException, DatabaseConnectionException;
 }
