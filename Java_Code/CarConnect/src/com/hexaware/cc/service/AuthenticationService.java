@@ -1,3 +1,10 @@
+/*
+ * Author: Venkatesh Pai & Amir Manzoor
+ * Desc: Carconnect (AuthenticationService)
+ * Date: 21/10/2024
+ */
+
+
 package com.hexaware.cc.service;
 
 import com.hexaware.cc.entity.Admin;
@@ -29,7 +36,7 @@ public class AuthenticationService {
         }
     }
 
-    public boolean authenticateCustomer(String username, String password) throws AuthenticationException, DatabaseConnectionException {
+    public boolean authenticateCustomer(String username, String password) throws AuthenticationException, DatabaseConnectionException, CustomerNotFoundException {
         Customer customer = customerService.getCustomerByUsername(username);
 		if (customer == null || !customer.authenticate(password)) {
 		    throw new AuthenticationException("Invalid customer credentials");

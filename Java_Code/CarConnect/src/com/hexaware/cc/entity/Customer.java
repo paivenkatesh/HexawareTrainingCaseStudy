@@ -1,3 +1,9 @@
+/*
+ * Author: Venkatesh Pai & Amir Manzoor
+ * Desc: Carconnect (Customer Entity)
+ * Date: 21/10/2024
+ */
+
 package com.hexaware.cc.entity;
 
 import java.sql.Date;

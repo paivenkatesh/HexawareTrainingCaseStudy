@@ -1,3 +1,9 @@
+/*
+ * Author: Venkatesh Pai & Amir Manzoor
+ * Desc: Carconnect (Admin Dao)
+ * Date: 21/10/2024
+ */
+
 package com.hexaware.cc.dao;
 
 import com.hexaware.cc.entity.Admin;

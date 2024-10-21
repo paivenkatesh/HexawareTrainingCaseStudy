@@ -1,3 +1,9 @@
+/*
+ * Author: Venkatesh Pai & Amir Manzoor
+ * Desc: Carconnect (vehicle Entity)
+ * Date: 21/10/2024
+ */
+
 package com.hexaware.cc.entity;
 
 public class Vehicle {

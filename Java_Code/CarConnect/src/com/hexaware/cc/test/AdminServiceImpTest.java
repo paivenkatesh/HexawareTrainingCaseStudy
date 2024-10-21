@@ -1,3 +1,10 @@
+
+/*
+ * Author: Venkatesh Pai & Amir Manzoor
+ * Desc: Carconnect (AdminServiceImp Test)
+ * Date: 21/10/2024
+ */
+
 package com.hexaware.cc.test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +22,7 @@ class AdminServiceImpTest {
     static IAdmin service;
     
     @BeforeAll
-    public static void beforeAll() {
+    public static void beforeAll() throws DatabaseConnectionException {
         service = new AdminServiceImp();
     }
     

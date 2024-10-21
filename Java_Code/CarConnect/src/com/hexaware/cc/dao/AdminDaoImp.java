@@ -6,7 +6,7 @@ import java.sql.*;
 import com.hexaware.cc.entity.Admin;
 import com.hexaware.cc.exception.DatabaseConnectionException;
 import com.hexaware.cc.util.DBConnUtil;
-import com.hexaware.cc.util.*;
+
 
 public class AdminDaoImp implements IAdminDao {
     private Connection conn;

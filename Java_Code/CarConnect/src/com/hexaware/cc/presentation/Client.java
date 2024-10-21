@@ -1,3 +1,10 @@
+/*
+ * Author: Venkatesh Pai & Amir Manzoor
+ * Desc: Carconnect (Main Module)
+ * Date: 21/10/2024
+ */
+
+
 package com.hexaware.cc.presentation;
 
 import java.util.List;
@@ -13,19 +20,33 @@ import com.hexaware.cc.exception.InvalidInputException;
 import com.hexaware.cc.exception.ReservationException;
 import com.hexaware.cc.exception.VehicleNotFoundException;
 import com.hexaware.cc.service.*;
-import com.hexaware.cc.util.DBConnUtil;
 
 public class Client {
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final ICustomer customerService = new CustomerServiceImp();
-    private static final IVehicle vehicleService = new VehicleServiceImp();
-    private static final IReservation reservationService = new ReservationServiceImp();
-    private static final IAdmin adminService = new AdminServiceImp();
-    private static final AuthenticationService authService = new AuthenticationService(adminService, customerService);
-    private static String currentUser = null;
-    private static String currentRole = null;
+	 @SuppressWarnings("resource")
+	private static final Scanner scanner = new Scanner(System.in);
+	    
+	    private static ICustomer customerService;
+	    private static IVehicle vehicleService;
+	    private static IReservation reservationService;
+	    private static IAdmin adminService;
 
-    public static void main(String[] args) throws AuthenticationException, DatabaseConnectionException {
+	    static {
+	        try {
+	            customerService = new CustomerServiceImp();
+	            vehicleService = new VehicleServiceImp();
+	            reservationService = new ReservationServiceImp();
+	            adminService = new AdminServiceImp();
+	        } catch (DatabaseConnectionException e) {
+	            System.err.println("Failed to initialize services: " + e.getMessage());
+	            throw new RuntimeException("Failed to initialize services", e);
+	        }
+	    }
+	    
+	    private static final AuthenticationService authService = new AuthenticationService(adminService, customerService);
+	    private static String currentUser = null;
+	    private static String currentRole = null;
+
+    public static void main(String[] args) throws AuthenticationException, DatabaseConnectionException, InvalidInputException, CustomerNotFoundException, VehicleNotFoundException, ReservationException, AdminNotFoundException {
         boolean exit = false;
         while (!exit) {
             if (currentUser == null) {
@@ -71,7 +92,7 @@ public class Client {
         }
     }
 
-    private static void customerLogin() throws AuthenticationException, DatabaseConnectionException {
+    private static void customerLogin() throws AuthenticationException, DatabaseConnectionException, CustomerNotFoundException {
         String username = getStringInput("Enter username: ");
         String password = getStringInput("Enter password: ");
         
@@ -103,7 +124,7 @@ public class Client {
         }
     }
 
-    private static void handleMainMenuChoice(int choice) throws DatabaseConnectionException, AuthenticationException, InvalidInputException, CustomerNotFoundException {
+    private static void handleMainMenuChoice(int choice) throws DatabaseConnectionException, AuthenticationException, InvalidInputException, CustomerNotFoundException, VehicleNotFoundException, ReservationException, AdminNotFoundException {
         if ("ADMIN".equals(currentRole)) {
             switch (choice) {
                 case 1 -> customerOperations();
@@ -446,7 +467,7 @@ public class Client {
         }
     }
     
-    private static void generateReports() {
+    private static void generateReports() throws DatabaseConnectionException {
         if (!"ADMIN".equals(currentRole)) {
             System.out.println("Access denied. Admin privileges required.");
             return;
@@ -588,5 +609,11 @@ public class Client {
     private static String getStringInput(String prompt) {
         System.out.print(prompt);
         return scanner.nextLine().trim();
+    }
+    
+    public static void closeScanner() {
+        if (scanner != null) {
+            scanner.close();
+        }
     }
 }

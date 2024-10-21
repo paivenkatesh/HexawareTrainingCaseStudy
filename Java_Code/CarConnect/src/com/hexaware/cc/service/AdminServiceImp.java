@@ -1,3 +1,10 @@
+/*
+ * Author: Venkatesh Pai & Amir Manzoor
+ * Desc: Carconnect (AdminServiceImp)
+ * Date: 21/10/2024
+ */
+
+
 package com.hexaware.cc.service;
 
 import com.hexaware.cc.dao.AdminDaoImp;
@@ -7,11 +14,10 @@ import com.hexaware.cc.exception.AdminNotFoundException;
 import com.hexaware.cc.exception.DatabaseConnectionException;
 import com.hexaware.cc.exception.InvalidInputException;
 
-
 public class AdminServiceImp implements IAdmin {
     private IAdminDao adminDao;
     
-    public AdminServiceImp() {
+    public AdminServiceImp() throws DatabaseConnectionException {
         this.adminDao = new AdminDaoImp();
     }
     
@@ -63,8 +69,10 @@ public class AdminServiceImp implements IAdmin {
     }
 
     private boolean isValidAdminData(Admin admin) {
-        // Add validation logic here
         return admin.getUsername() != null && !admin.getUsername().isEmpty() &&
-               admin.getPassword() != null && !admin.getPassword().isEmpty();
+               admin.getPassword() != null && !admin.getPassword().isEmpty() &&
+               admin.getEmail() != null && !admin.getEmail().isEmpty() &&
+               admin.getFirstName() != null && !admin.getFirstName().isEmpty() &&
+               admin.getLastName() != null && !admin.getLastName().isEmpty();
     }
 }
